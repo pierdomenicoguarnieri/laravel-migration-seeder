@@ -14,25 +14,16 @@ return new class extends Migration
   public function up()
   {
     Schema::create('trains', function (Blueprint $table) {
-      // Azienda
-      // Stazione di partenza
-      // Stazione di arrivo
-      // Orario di partenza
-      // Orario di arrivo
-      // Codice Treno
-      // Numero Carrozze
-      // In orario
-      // Cancellato
       $table->id();
-      $table->string('company', 20);
-      $table->string('starting_station', 70);
-      $table->string('srriving_station', 70);
-      $table->dateTime('starting_time');
-      $table->dateTime('arriving_time');
-      $table->string('train_code', 10)->unique();
-      $table->tinyInteger('number_of_carriages');
-      $table->boolean('is_in_time');
-      $table->boolean('is_cancelled');
+      $table->string('company', 20)->nullable();
+      $table->string('starting_station', 70)->nullable();
+      $table->string('arriving_station', 70)->nullable();
+      $table->dateTime('starting_time')->nullable();
+      $table->dateTime('arriving_time')->nullable();
+      $table->string('train_code', 10)->nullable()->unique();
+      $table->tinyInteger('number_of_carriages')->nullable();
+      $table->boolean('is_in_time')->nullable();
+      $table->boolean('is_cancelled')->nullable();
       $table->timestamps();
     });
   }
