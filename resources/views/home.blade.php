@@ -2,35 +2,70 @@
 
 @section('content')
   <main>
-    <div class="pg-main-wrapper px-5 py-5">
-      <h1 class="text-center">Lista dei treni</h1>
+    <div class="pg-main-wrapper px-5 py-5 bg-dark text-white">
+      <h1 class="text-center mb-4">Lista dei treni</h1>
 
-      <div class="pg-table-container mt-5">
-        <table class="table">
+      <h2 class="text-center">Treni non cancellati</h2>
+
+      <div class="pg-table-container rounded-3 border border-secondary shadow text-center my-5">
+        <table class="table table-dark">
           <thead>
             <tr>
-              <th scope="col">#ID</th>
+              <th scope="col">Codice treno</th>
               <th scope="col">Compagnia</th>
               <th scope="col">Stazione di partenza</th>
               <th scope="col">Stazione di arrivo</th>
               <th scope="col">Orario di partenza</th>
               <th scope="col">Orario di arrivo</th>
-              <th scope="col">Codice treno</th>
               <th scope="col">Numero di carrozze</th>
+              <th scope="col">Stato ritardo</th>
               <th scope="col">Stato del treno</th>
-              <th scope="col">Cancellato</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($trains as $train)
+            @foreach ($trains_not_cancelled as $train)
             <tr>
-              <th scope="row">{{$train->id}}</th>
-              <td>{{$train->company}}</td>
+              <th scope="row">{{$train->train_code}}</th>
+              <th class="text-primary">{{$train->company}}</th>
               <td>{{$train->starting_station}}</td>
               <td>{{$train->arriving_station}}</td>
               <td>{{$train->starting_time}}</td>
               <td>{{$train->arriving_time}}</td>
-              <td>{{$train->train_code}}</td>
+              <td>{{$train->number_of_carriages}}</td>
+              <td class="{{$train->is_in_time === 0 ? 'text-danger' : 'text-success'}}">{{$train->is_in_time === 0 ? 'In ritardo' : 'In orario'}}</td>
+              <td class="{{$train->is_cancelled === 0 ? 'text-danger' : 'text-success'}}">{{$train->is_cancelled === 0 ? 'Cancellato' : 'Non cancellato'}}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-center">Treni cancellati</h2>
+
+      <div class="pg-table-container rounded-3 border border-secondary text-center shadow my-5">
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Codice treno</th>
+              <th scope="col">Compagnia</th>
+              <th scope="col">Stazione di partenza</th>
+              <th scope="col">Stazione di arrivo</th>
+              <th scope="col">Orario di partenza</th>
+              <th scope="col">Orario di arrivo</th>
+              <th scope="col">Numero di carrozze</th>
+              <th scope="col">Stato ritardo</th>
+              <th scope="col">Stato del treno</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($trains_cancelled as $train)
+            <tr>
+              <th scope="row">{{$train->train_code}}</th>
+              <th class="text-primary">{{$train->company}}</th>
+              <td>{{$train->starting_station}}</td>
+              <td>{{$train->arriving_station}}</td>
+              <td>{{$train->starting_time}}</td>
+              <td>{{$train->arriving_time}}</td>
               <td>{{$train->number_of_carriages}}</td>
               <td class="{{$train->is_in_time === 0 ? 'text-danger' : 'text-success'}}">{{$train->is_in_time === 0 ? 'In ritardo' : 'In orario'}}</td>
               <td class="{{$train->is_cancelled === 0 ? 'text-danger' : 'text-success'}}">{{$train->is_cancelled === 0 ? 'Cancellato' : 'Non cancellato'}}</td>
