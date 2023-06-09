@@ -15,8 +15,8 @@
               <th scope="col">Compagnia</th>
               <th scope="col">Stazione di partenza</th>
               <th scope="col">Stazione di arrivo</th>
-              <th scope="col">Orario di partenza</th>
-              <th scope="col">Orario di arrivo</th>
+              <th scope="col">Data | orario di partenza</th>
+              <th scope="col">Data | orario di arrivo</th>
               <th scope="col">Numero di carrozze</th>
               <th scope="col">Stato ritardo</th>
               <th scope="col">Stato del treno</th>
@@ -29,8 +29,8 @@
               <th class="text-primary">{{$train->company}}</th>
               <td>{{$train->starting_station}}</td>
               <td>{{$train->arriving_station}}</td>
-              <td>{{$train->starting_time}}</td>
-              <td>{{$train->arriving_time}}</td>
+              <td>{{str_replace(' ', ' | ', $train->starting_time)}}</td>
+              <td>{{str_replace(' ', ' | ', $train->arriving_time)}}</td>
               <td>{{$train->number_of_carriages}}</td>
               <td class="{{$train->is_in_time === 0 ? 'text-danger' : 'text-success'}}">{{$train->is_in_time === 0 ? 'In ritardo' : 'In orario'}}</td>
               <td class="{{$train->is_cancelled === 0 ? 'text-danger' : 'text-success'}}">{{$train->is_cancelled === 0 ? 'Cancellato' : 'Non cancellato'}}</td>
@@ -50,8 +50,8 @@
               <th scope="col">Compagnia</th>
               <th scope="col">Stazione di partenza</th>
               <th scope="col">Stazione di arrivo</th>
-              <th scope="col">Orario di partenza</th>
-              <th scope="col">Orario di arrivo</th>
+              <th scope="col">Data | orario di partenza</th>
+              <th scope="col">Data | orario di arrivo</th>
               <th scope="col">Numero di carrozze</th>
               <th scope="col">Stato ritardo</th>
               <th scope="col">Stato del treno</th>
@@ -64,8 +64,8 @@
               <th class="text-primary">{{$train->company}}</th>
               <td>{{$train->starting_station}}</td>
               <td>{{$train->arriving_station}}</td>
-              <td>{{$train->starting_time}}</td>
-              <td>{{$train->arriving_time}}</td>
+              <td>{{str_replace(' ', ' | ', $train->starting_time)}}</td>
+              <td>{{str_replace(' ', ' | ', $train->arriving_time)}}</td>
               <td>{{$train->number_of_carriages}}</td>
               <td class="{{$train->is_in_time === 0 ? 'text-danger' : 'text-success'}}">{{$train->is_in_time === 0 ? 'In ritardo' : 'In orario'}}</td>
               <td class="{{$train->is_cancelled === 0 ? 'text-danger' : 'text-success'}}">{{$train->is_cancelled === 0 ? 'Cancellato' : 'Non cancellato'}}</td>
